@@ -8,9 +8,19 @@
 // ==========================================
 
 import { MhahPanchang } from "nepali-panchang-utils";
+import admin from "firebase-admin";
 
-const FIREBASE_PROJECT_ID = "harsh-sharma-dc962";
-const FIREBASE_API_KEY = process.env.FIREBASE_API_KEY;
+// Firebase Admin SDK initialize karo (sirf ek baar, function reuse hone par dobara na ho)
+if (!admin.apps.length){
+  admin.initializeApp({
+    credential: admin.credential.cert({
+      projectId: process.env.FIREBASE_PROJECT_ID,
+      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+      privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n")
+    })
+  });
+}
+const db = admin.firestore();
 
 // Ujjain coordinates (Simhastha/Mahakal city)
 const UJJAIN_LAT = 23.1765;
@@ -214,37 +224,20 @@ async function getAllHoroscopes(){
   return results;
 }
 
-// ---------- Firestore सेव ----------
+// ---------- Firestore सेव (Admin SDK — security rules को bypass करता है, पूरी तरह सुरक्षित) ----------
 async function saveToFirestore(panchang, shlok, horoscopes){
-  const fieldPaths = ["tithi","vaar","nakshatra","yoga","karana","muhurat","shlok","horoscopes","updatedAt","source"];
-  const maskParams = fieldPaths.map(f => `updateMask.fieldPaths=${f}`).join("&");
-  const url = `https://firestore.googleapis.com/v1/projects/${FIREBASE_PROJECT_ID}/databases/(default)/documents/content/today?key=${FIREBASE_API_KEY}&${maskParams}`;
-
-  const body = {
-    fields: {
-      tithi: { stringValue: panchang.tithi },
-      vaar: { stringValue: panchang.vaar },
-      nakshatra: { stringValue: panchang.nakshatra },
-      yoga: { stringValue: panchang.yoga },
-      karana: { stringValue: panchang.karana },
-      muhurat: { stringValue: panchang.muhurat },
-      shlok: { stringValue: shlok },
-      horoscopes: { stringValue: JSON.stringify(horoscopes) },
-      updatedAt: { stringValue: new Date().toISOString() },
-      source: { stringValue: "local-calc+free-api" }
-    }
-  };
-
-  const res = await fetch(url, {
-    method: "PATCH",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body)
-  });
-
-  if (!res.ok){
-    const errText = await res.text();
-    throw new Error("Firestore save error: " + errText);
-  }
+  await db.collection("content").doc("today").set({
+    tithi: panchang.tithi,
+    vaar: panchang.vaar,
+    nakshatra: panchang.nakshatra,
+    yoga: panchang.yoga,
+    karana: panchang.karana,
+    muhurat: panchang.muhurat,
+    shlok: shlok,
+    horoscopes: JSON.stringify(horoscopes),
+    updatedAt: new Date().toISOString(),
+    source: "local-calc+free-api"
+  }, { merge: true });
 }
 
 export default async function handler(req, res){
@@ -260,4 +253,5 @@ export default async function handler(req, res){
     console.error("Panchang update failed:", e);
     res.status(500).json({ success: false, error: e.message, stack: e.stack });
   }
-}
+  }
+    
