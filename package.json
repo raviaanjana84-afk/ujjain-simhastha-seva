@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "nepali-panchang-utils": "^1.1.1"
+    "nepali-panchang-utils": "^1.1.1",
+    "firebase-admin": "^12.7.0"
   }
 }
