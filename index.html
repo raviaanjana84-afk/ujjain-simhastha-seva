@@ -3,12 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>आचार्य हर्ष शर्मा | डिजिटल आध्यात्मिक सेवा</title>
-<meta name="description" content="आचार्य हर्ष शर्मा की डिजिटल आध्यात्मिक सेवा — हवन, पूजन, कुंडली, मंत्र लाइब्रेरी, डिजिटल जप माला, धार्मिक क्विज और भक्ति AI। ऑनलाइन बुकिंग करें।">
-<meta name="keywords" content="आचार्य हर्ष शर्मा, हवन बुकिंग, पूजन सेवा, कुंडली, ज्योतिष, मंत्र, जप माला, पंडित जी">
-<meta property="og:title" content="आचार्य हर्ष शर्मा | डिजिटल आध्यात्मिक सेवा">
-<meta property="og:description" content="हवन, पूजन, कुंडली और मंत्र सेवाओं के लिए ऑनलाइन बुकिंग करें।">
+<title>आचार्य हर्ष शर्मा | उज्जैन में हवन-पूजन बुकिंग | बगलामुखी मंदिर</title>
+<meta name="description" content="आचार्य हर्ष शर्मा — उज्जैन के प्रसिद्ध पंडित जी। हवन, पूजन, कुंडली, बगलामुखी मंदिर सेवाएं ऑनलाइन बुक करें। मंगल दोष, कालसर्प दोष, पितृ दोष निवारण पूजन।">
+<meta name="keywords" content="हर्ष शर्मा, आचार्य हर्ष शर्मा, पंडित हर्ष शर्मा उज्जैन, पूजन करवाना, हवन करवाना, उज्जैन पंडित, बगलामुखी मंदिर उज्जैन, बगलामुखी हवन, मंगल दोष निवारण, कालसर्प पूजन, पितृ दोष शांति, कुंडली उज्जैन, ज्योतिष उज्जैन, वास्तु पूजन, नवग्रह शांति">
+<meta property="og:title" content="आचार्य हर्ष शर्मा | उज्जैन में हवन-पूजन बुकिंग">
+<meta property="og:description" content="उज्जैन के पंडित हर्ष शर्मा द्वारा हवन, पूजन, कुंडली और बगलामुखी मंदिर सेवाएं। ऑनलाइन बुकिंग करें।">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="hi_IN">
+<meta name="geo.region" content="IN-MP">
+<meta name="geo.placename" content="Ujjain">
 <meta name="theme-color" content="#7A2E2E">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/png" href="icons/icon-192.png">
@@ -53,6 +56,7 @@
   <a href="https://wa.me/918319714682" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp पर संपर्क करें</a>
   <a href="https://www.instagram.com/pt_harshu0732?igsi=aWd6YjJlMXgxNWo0" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i> Instagram पर फॉलो करें</a>
   <a href="#" id="shareBtn"><i class="fa-solid fa-share-nodes"></i> शेयर करें</a>
+  <a href="privacy-policy.html"><i class="fa-solid fa-shield-halved"></i> गोपनीयता नीति</a>
 </nav>
 
 <!-- ================= MAIN CONTENT ================= -->
@@ -64,10 +68,8 @@
     <button class="service-card" data-route="hawan"><i class="fa-solid fa-fire"></i><span>हवन</span></button>
     <button class="service-card" data-route="pujan"><i class="fa-solid fa-hands-praying"></i><span>पूजन</span></button>
     <button class="service-card" data-route="kundli"><i class="fa-solid fa-star-and-crescent"></i><span>कुंडली</span></button>
-    <!-- ✅ CHANGE 1: Mantra Kosh link sahi kiya -->
-    <a href="mantra.html" class="service-card"><i class="fa-solid fa-om"></i><span>मंत्र कोश</span></a>
-    <!-- ✅ CHANGE 2: Quiz link sahi kiya -->
-    <a href="quiz.html" class="service-card"><i class="fa-solid fa-scroll"></i><span>क्विज</span></a>
+    <button class="service-card" data-route="mantra"><i class="fa-solid fa-book-open"></i><span>मंत्र</span></button>
+    <a class="service-card" href="quiz.html"><i class="fa-solid fa-scroll"></i><span>क्विज</span></a>
     <button class="service-card" data-route="bhaktiAI"><i class="fa-solid fa-sparkles"></i><span>भक्ति AI</span></button>
   </div>
 
@@ -199,8 +201,7 @@
 <nav class="bottom-nav">
   <a href="#" class="nav-link active" data-route="home"><i class="fa-solid fa-house"></i><p>होम</p></a>
   <a href="quiz.html" class="nav-link"><i class="fa-solid fa-puzzle-piece"></i><p>क्विज</p></a>
-  <!-- ✅ CHANGE 3: Bottom nav mein Mantra link sahi kiya -->
-  <a href="mantra.html" class="nav-link"><i class="fa-solid fa-om"></i><p>मंत्र</p></a>
+  <a href="#" class="nav-link" data-route="mantra"><i class="fa-solid fa-om"></i><p>मंत्र</p></a>
   <a href="#" class="nav-link" data-route="profile"><i class="fa-solid fa-user"></i><p>प्रोफाइल</p></a>
 </nav>
 
@@ -226,4 +227,5 @@
 <script type="module" src="auth.js"></script>
 <script type="module" src="admin.js"></script>
 </body>
-          </html>
+  </html>
+  
